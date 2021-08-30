@@ -4,26 +4,26 @@ public class Enemy {
 
     private char enemyChoice;
 
-    public void setEnemyChoice(char playChoice){
+    public void setEnemyChoice(char playChoice) {
         this.enemyChoice = playChoice;
     }
 
-    public char getEnemyChoice(){
+    public char getEnemyChoice() {
         return this.enemyChoice;
     }
 
-    public Pair generateMove(Board board, User user){
+    public Pair generateMove(Board board, User user) {
         int bestMove = Integer.MIN_VALUE;
         int row = -1;
         int col = -1;
 
-        for(int i = 0; i <= 2; i++){
-            for(int j = 0; j<= 2; j++){
-                if(!board.isColumnOccupied(i,j)){
+        for (int i = 0; i <= 2; i++) {
+            for (int j = 0; j<= 2; j++) {
+                if (!board.isColumnOccupied(i,j)) {
                     board.makeMove(i, j, null, this);
                     int moveEval = this.miniMax(board, 0, false, user);
                     board.makeMove(i, j, null, null);
-                    if(moveEval > bestMove){
+                    if (moveEval > bestMove) {
                         row = i;
                         col = j;
                         bestMove = moveEval;
@@ -72,10 +72,10 @@ public class Enemy {
         return 0;
     }
 
-    private boolean movesLeft(Board board){
-        for(int i = 0; i <= 2; i++){
-            for(int j = 0; j <= 2; j++){
-                if(!board.isColumnOccupied(i, j)){
+    private boolean movesLeft(Board board) {
+        for (int i = 0; i <= 2; i++) {
+            for (int j = 0; j <= 2; j++) {
+                if (!board.isColumnOccupied(i, j)) {
                     return true;
                 }
             }
@@ -83,25 +83,25 @@ public class Enemy {
         return false;
     }
     //minimax algorithm
-    private int miniMax(Board board, int depth, boolean maxPlayer, User user){
+    private int miniMax(Board board, int depth, boolean maxPlayer, User user) {
         int score = evaluateBoard(board, user);
 
-        if(score == 10){
+        if (score == 10) {
             return score;
-        } else if(score == -10){
+        } else if(score == -10) {
             return score;
         }
 
-        if(!this.movesLeft(board)){
+        if (!this.movesLeft(board)) {
             return 0;
         }
 
-        if(maxPlayer){
+        if (maxPlayer) {
             int best = Integer.MIN_VALUE;
 
-            for(int i = 0; i <= 2; i++){
-                for(int j = 0; j <= 2; j++){
-                    if(!board.isColumnOccupied(i, j)){
+            for (int i = 0; i <= 2; i++) {
+                for (int j = 0; j <= 2; j++) {
+                    if (!board.isColumnOccupied(i, j)) {
                         board.makeMove(i, j, null, this);
                         best = Math.max(best, this.miniMax(board, depth + 1, false, user));
                         board.makeMove(i, j, null, null);
@@ -112,9 +112,9 @@ public class Enemy {
         } else {
             int best = Integer.MAX_VALUE;
 
-            for(int i = 0; i <= 2; i++){
-                for(int j = 0; j <= 2; j++){
-                    if(!board.isColumnOccupied(i, j)){
+            for (int i = 0; i <= 2; i++) {
+                for (int j = 0; j <= 2; j++) {
+                    if (!board.isColumnOccupied(i, j)) {
                         board.makeMove(i, j, user, null);
                         best = Math.min(best, this.miniMax(board, depth + 1, true, user));
                         board.makeMove(i, j, null, null);

@@ -9,11 +9,11 @@ public class Pair<Integer> {
             this.column = column;
         }
 
-        public int row(){
+        public int row() {
             return this.row;
         }
 
-        public int column(){
+        public int column() {
             return this.column;
         }
 

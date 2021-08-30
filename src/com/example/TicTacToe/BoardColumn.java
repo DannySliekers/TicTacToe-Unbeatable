@@ -5,24 +5,24 @@ public class BoardColumn {
     private char symbol;
 
 
-    public BoardColumn(char symbol, boolean isOccupied){
+    public BoardColumn (char symbol, boolean isOccupied) {
         this.symbol = symbol;
         this.isOccupied = isOccupied;
     }
 
-    public void setSymbol(char symbol){
+    public void setSymbol(char symbol) {
         this.symbol = symbol;
     }
 
-    public char getSymbol(){
+    public char getSymbol() {
         return this.symbol;
     }
 
-    public void setOccupied(boolean occupied){
+    public void setOccupied(boolean occupied) {
         this.isOccupied = occupied;
     }
 
-    public boolean getOccupied(){
+    public boolean getOccupied() {
         return this.isOccupied;
     }
 }
