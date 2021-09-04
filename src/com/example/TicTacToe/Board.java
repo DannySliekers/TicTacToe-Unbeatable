@@ -5,10 +5,10 @@ public class Board {
 
     public Board() {
         this.board = new BoardColumn[3][3];
-        this.GenerateInitialBoard();
+        this.generateInitialBoard();
     }
 
-    private void GenerateInitialBoard() {
+    private void generateInitialBoard() {
         for (int i = 0; i <= 2; i++) {
             for (int j = 0; j <= 2; j++) {
                 this.board[i][j] = new BoardColumn(' ', false);
@@ -33,13 +33,17 @@ public class Board {
     }
 
     public void printBoard() {
-        String boardToPrint = "";
+        StringBuilder boardToPrint = new StringBuilder();
         for (int i = 0; i <= 2; i++) {
             for (int j = 0; j <= 2; j++) {
                 if (j == 2) {
-                    boardToPrint += "[" + this.board[i][j].getSymbol() + "] \n";
+                    boardToPrint.append("[");
+                    boardToPrint.append(this.board[i][j].getSymbol() );
+                    boardToPrint.append("] \n");
                 } else {
-                    boardToPrint += "[" + this.board[i][j].getSymbol() + "]-";
+                    boardToPrint.append("[");
+                    boardToPrint.append(this.board[i][j].getSymbol());
+                    boardToPrint.append("]-");
                 }
             }
 
@@ -48,11 +52,7 @@ public class Board {
     }
 
     public boolean isColumnOccupied(int row, int col) {
-        if (this.board[row][col].getOccupied()) {
-            return true;
-        } else {
-            return false;
-        }
+        return this.board[row][col].getOccupied();
     }
 
     public char getSymbol(int row, int col) {

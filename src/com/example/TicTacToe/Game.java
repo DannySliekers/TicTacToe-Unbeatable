@@ -22,7 +22,7 @@ public class Game {
     }
 
     private void turn() {
-        System.out.println(username + ", please make a move");
+        System.out.println(this.username + ", please make a move");
         System.out.println("Which row do you want to play?");
         int row = 0;
         int col = 0;
@@ -104,6 +104,10 @@ public class Game {
                     return true;
                 }
             }
+        return this.checkDiagonal(symbol);
+    }
+
+    private boolean checkDiagonal(char symbol) {
         //checks first diagonal for wins
         if (this.board.getSymbol(0, 0) == symbol && this.board.getSymbol(1, 1) == symbol && this.board.getSymbol(2, 2) == symbol) {
             return true;
@@ -124,10 +128,6 @@ public class Game {
                 }
             }
         }
-        if (columnOccupiedCounter == 9) {
-            return true;
-        } else {
-            return false;
-        }
+        return columnOccupiedCounter == 9;
     }
 }

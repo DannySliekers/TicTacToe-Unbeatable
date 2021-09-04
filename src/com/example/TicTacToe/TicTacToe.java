@@ -2,7 +2,12 @@ package com.example.TicTacToe;
 
 import java.util.Scanner;
 
-public class TicTacToe {
+final class TicTacToe {
+
+    private TicTacToe() {
+
+    }
+
     public static void main(String[] args) {
         System.out.println("Welcome to this simple tic-tac-toe game");
 
